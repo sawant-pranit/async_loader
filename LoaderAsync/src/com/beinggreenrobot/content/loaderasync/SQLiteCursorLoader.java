@@ -10,23 +10,35 @@ import java.io.PrintWriter;
 import java.util.Arrays;
 
 public class SQLiteCursorLoader extends AbstractCursorLoader {
-  SQLiteOpenHelper db=null;
-  String rawQuery=null;
-  String[] args=null;
+  SQLiteOpenHelper db		=null;
+  String rawQuery			=null;
+  String[] args				=null;
+  private final int type;
 
-  /**
-   * Creates a fully-specified SQLiteCursorLoader. See
-   * {@link SQLiteDatabase#rawQuery(SQLiteDatabase, String, String[])
-   * SQLiteDatabase.rawQuery()} for documentation on the
-   * meaning of the parameters. These will be passed as-is
-   * to that call.
-   */
+	/**
+	 * Creates a fully-specified SQLiteCursorLoader. See
+	 * {@link SQLiteDatabase#rawQuery(SQLiteDatabase, String, String[])
+	 * SQLiteDatabase.rawQuery()} for documentation on the meaning of the
+	 * parameters. These will be passed as-is to that call.
+	 * 
+	 * @param context
+	 *            context
+	 * @param db
+	 *            instance of SqLiteHelper
+	 * @param rawQuery
+	 *            your raw query here
+	 * @param args
+	 *            selection arguments
+	 * @param type
+	 *            your request type
+	 */
   public SQLiteCursorLoader(Context context, SQLiteOpenHelper db,
-                            String rawQuery, String[] args) {
+                            String rawQuery, String[] args, int type) {
     super(context);
-    this.db=db;
-    this.rawQuery=rawQuery;
-    this.args=args;
+    this.db			=db;
+    this.rawQuery	=rawQuery;
+    this.args		=args;
+    this.type		=type;
   }
 
   /**
@@ -189,4 +201,8 @@ public class SQLiteCursorLoader extends AbstractCursorLoader {
       return(null);
     }
   }
+  
+	public int getType() {
+		return type;
+	}
 }
