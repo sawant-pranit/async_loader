@@ -2,6 +2,7 @@
 .project
 .settings
 eclipsebin
+.metadata/
 
 target
 pom.xml.*
